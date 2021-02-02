@@ -1,23 +1,33 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
-
-int main()
-{   
-    long long test,n,i,sum,j,k;
-    cin>>test;
-    while(test--)
-    {   char ch;
-        cin>>n;
-        char str[n];
-        cin>>str;
-        for(i=0,j=0;i<n;i+=4,j++)
+void decodeit(int n , char strng[]){
+    char c ;
+    long long sum=0 ;
+    for(int i=0;i<n;i+=4)
         {
-            sum=((str[i]-'0')*8)+((str[i+1]-'0')*4)+((str[i+2]-'0')*2)+((str[i+3]-'0')*1);
-            ch=(sum+'a');
-            cout<<ch;
+            sum=((strng[i]-'0')*8)+((strng[i+1]-'0')*4)+((strng[i+2]-'0')*2)+((strng[i+3]-'0')*1);   //similar to binary to decimal conversion
+            c=(sum+'a');
+            cout<<c;
         }
-        cout<<endl;
-    }
-return 0;
+}
+
+int main() {
+	// your code goes here
+	//Arin
+	
+	long long test ;
+	cin>> test ;
+	
+	while(test--) {
+	    long long n;
+	    cin>>n ;
+	    char strng[n] ;
+	    cin>>strng ;
+	    decodeit(n,strng) ;
+	    
+	    cout<<endl ;
+	    
+	}
+	return 0;
 }
