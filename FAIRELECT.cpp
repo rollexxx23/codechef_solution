@@ -1,61 +1,68 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-	// your code goes here
-	long long t;
-    cin >> t;
-    while (t--) {
-        
-        long long n, m;
-        cin >> n >> m;
-        
-        vector <long long> arr1, arr2 ;
-        long long s1(n) , s2(m) ;
-        s1=s2=0 ;
-        
-         for (int i = 0; i < n; i++) {
-            
-            long long x;
-            cin >> x;
-            arr1.push_back(x);
-            s1 += x;
-        }
-        for (int i = 0; i < m; i++) {
-            
-            long long x;
-            cin >> x;
-            arr2.push_back(x);
-            s2 += x;
-        }
-        int flag=1 ;
+
+
+void fairelect(long long n , long long m , long long sum1 , long long sum2 , vector<long long> array1 , vector<long long> array2) {
+    int flag=1 ;
        
         
         
-        int i=0 ;
-        sort(arr1.begin(), arr1.end());
-        sort(arr2.begin(), arr2.end());
-        while((s1<=s2) && (i<m && i<n)){
-            s1 = s1 + arr2[m-1-i] - arr1[i];
-            s2 = s2 + arr1[i] - arr2[m-1-i];
-            i++ ;
+        int k=0 ;
+        
+        sort(array1.begin(), array1.end());
+        sort(array2.begin(), array2.end());
+        while((sum1<=sum2) && (k<m && k<n)){
+            sum1 = sum1 + array2[m-1-k] - array1[k]; //Add maximum of 2nd array subtract minimum of 1st
+            sum2 = sum2 + array1[k] - array2[m-1-k];  // Add min of 1st array subtract max of 2nd
+            k++ ;
            
         }
-        if(s1<=s2)
+        
+        
+        if(sum1<=sum2)   // if making 1st candiate win is not possible
          flag=-1;
          
          if(flag<0)
-            cout<<-1<<endl;
-        else cout<<i<<endl;
+            cout<<-1<<endl;    
+        else cout<<k<<endl;    //ans
+}
+
+int main() {
+	// your code goes here
+	//Arin
+	
+	
+	long long test ;
+	cin >> test ;
+	while(test--){
+	    long long n, m;
+        cin >> n >> m;
+        long long sum1(n) , sum2(n) ;
+        vector <long long> array1 , array2 ;
+        sum1=0 ;    
+        sum2=0 ;
+         for (int i = 0; i < n; i++) {
+            
+            long long a;
+            cin >> a;
+            array1.push_back(a);
+            sum1 = sum1 + a;
+        }
         
+        for (int i = 0; i < m; i++) {
+            
+            long long a;
+            cin >> a;
+            array2.push_back(a);
+            sum2 = sum2 + a;
+        }
         
-        
-    
-        
-        
-        
-        
-    }
+        fairelect(n,m,sum1,sum2,array1,array2) ;
+	}
+	return 0;
+}
+
     
     
     
